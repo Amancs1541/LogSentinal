@@ -1,0 +1,62 @@
+body {
+    background: #f5f7fa;
+    color: #1f2937;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-brand {
+    color: #2563eb !important;
+    font-weight: 700;
+}
+
+.nav-link {
+    color: #4b5563 !important;
+}
+
+.nav-link:hover {
+    color: #2563eb !important;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.metric-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.table-card {
+    border-radius: 12px;
+}
+
+.table thead {
+    background: #2563eb;
+    color: white;
+}
+
+.table tbody tr:hover {
+    background: #e0f2fe;
+}
+
+.chart-card {
+    padding: 10px;
+}

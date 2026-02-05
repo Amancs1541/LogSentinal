@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-3">Log Detail: {{ logfile.filename }}</h1>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card metric-card">
+            <div class="metric-label">Success</div>
+            <div class="metric-value text-success">{{ success }}</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card metric-card">
+            <div class="metric-label">Fail</div>
+            <div class="metric-value text-danger">{{ fail }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-6">
+        <div class="card chart-card">
+            <div class="card-header bg-white fw-bold">Success vs Fail</div>
+            <div class="card-body">
+                <canvas id="sfChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card chart-card">
+            <div class="card-header bg-white fw-bold">Top IPs</div>
+            <div class="card-body">
+                <canvas id="logIpChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="mt-4">Search Entries</h3>
+<input type="text" id="searchBox" class="form-control mb-3"
+       placeholder="Search by IP, user, status, keyword...">
+
+<div class="card table-card">
+    <div class="card-header bg-white fw-bold">Entries</div>
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>User</th>
+                <th>IP</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Raw</th>
+            </tr>
+            </thead>
+            <tbody id="entriesTable">
+            {% for e in entries %}
+                <tr>
+                    <td>{{ e.timestamp }}</td>
+                    <td>{{ e.username }}</td>
+                    <td>{{ e.ip_address }}</td>
+                    <td class="geo" data-ip="{{ e.ip_address }}">Loading...</td>
+                    <td>{{ e.status }}</td>
+                    <td>{{ e.raw_line }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const sfData = {
+        success: {{ success }},
+        fail: {{ fail }}
+    };
+    const ipLabels = {{ ips|tojson }};
+    const ipCounts = {{ ip_counts|tojson }};
+    const logId = {{ logfile.id }};
+</script>
+{% endblock %}

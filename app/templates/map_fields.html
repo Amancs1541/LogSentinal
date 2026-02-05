@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="mb-4">Map Log Fields</h1>
+
+<p><strong>Sample line:</strong></p>
+<pre class="bg-light p-2 border rounded">{{ sample_line }}</pre>
+
+<form method="post" action="{{ url_for('logs.process') }}">
+    <input type="hidden" name="filepath" value="{{ filepath }}">
+    <input type="hidden" name="logfile_id" value="{{ logfile_id }}">
+
+    <div class="mb-3">
+        <label class="form-label">Parsing Mode</label>
+        <select name="mode" class="form-select">
+            <option value="mapping" selected>Use field mapping</option>
+            <option value="auto">Auto-detect (Universal Parser)</option>
+        </select>
+    </div>
+
+    <h5 class="mt-4">Field Mapping (only used when mode = mapping)</h5>
+
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-3">
+            <label class="form-label">Timestamp</label>
+            <select name="timestamp_index" class="form-select">
+                <option value="-1">Not present</option>
+                {% for idx, part in fields %}
+                    <option value="{{ idx }}">{{ idx }} — {{ part }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Username</label>
+            <select name="username_index" class="form-select">
+                <option value="-1">Not present</option>
+                {% for idx, part in fields %}
+                    <option value="{{ idx }}">{{ idx }} — {{ part }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">IP Address</label>
+            <select name="ip_index" class="form-select">
+                <option value="-1">Not present</option>
+                {% for idx, part in fields %}
+                    <option value="{{ idx }}">{{ idx }} — {{ part }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Status</label>
+            <select name="status_index" class="form-select">
+                <option value="-1">Not present</option>
+                {% for idx, part in fields %}
+                    <option value="{{ idx }}">{{ idx }} — {{ part }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg">Start Processing</button>
+</form>
+
+{% endblock %}

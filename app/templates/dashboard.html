@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="mb-4">Dashboard</h1>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card metric-card">
+            <div class="metric-label">Total Logs</div>
+            <div class="metric-value" id="totalLogs">0</div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card metric-card">
+            <div class="metric-label">Total Entries</div>
+            <div class="metric-value" id="totalEntries">0</div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card metric-card">
+            <div class="metric-label">Total Anomalies</div>
+            <div class="metric-value text-danger" id="totalAnomalies">0</div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-8">
+        <div class="card chart-card">
+            <div class="card-header bg-white fw-bold">Login Attempts Over Time</div>
+            <div class="card-body">
+                <canvas id="loginChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card chart-card">
+            <div class="card-header bg-white fw-bold">Top IPs</div>
+            <div class="card-body">
+                <canvas id="ipChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card table-card">
+    <div class="card-header bg-white fw-bold">Recent Logs</div>
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Filename</th>
+                    <th>Uploaded</th>
+                    <th>Entries</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="recentLogsTable"></tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
