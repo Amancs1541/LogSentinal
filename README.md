@@ -68,6 +68,7 @@ The system has been tested using predefined test cases, including:
 git clone https://github.com/your-username/logsentinel.git
 cd logsentinel
 pip install -r requirements.txt
+```
 
 ### Run the Application
 ```
